@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: movietracker
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: movietracker
+      JWT_SECRET: defaultsecret
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    command: sh -c "until nc -z db 5432; do sleep 1; done && ./server"
+
+volumes:
+  db_data:
