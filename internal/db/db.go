@@ -14,7 +14,7 @@ var DB *gorm.DB
 
 func Init() error {
 	if err := godotenv.Load(); err != nil {
-		log.Println("⚠️ .env dosyası yüklenemedi:", err)
+		log.Println(".env dosyası yüklenemedi:", err)
 	}
 
 	dsn := fmt.Sprintf(
