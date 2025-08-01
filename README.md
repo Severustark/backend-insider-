@@ -85,7 +85,6 @@ PUT /api/v1/users/me
   "email": "yeni@example.com"
 }
 ```
-
 ### 🏦 Bakiye & İşlem
 
 ```http
