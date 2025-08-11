@@ -39,7 +39,7 @@ backend-insider/
 
 Projeyi çalıştırmadan önce proje dizininde `.env` adında bir dosya oluşturun ve aşağıdaki ortam değişkenlerini içine yazın:
 
-```env
+````env
 PORT=8080
 DB_HOST=localhost
 DB_PORT=5432
@@ -53,7 +53,7 @@ JWT_SECRET=defaultsecret
 
 ```bash
 docker-compose up --build
-```
+````
 
 ## 🧪 API Örnekleri
 
@@ -86,6 +86,7 @@ PUT /api/v1/users/me
   "email": "yeni@example.com"
 }
 ```
+
 ### 🏦 Bakiye & İşlem
 
 ```http
@@ -110,7 +111,7 @@ GET  /api/v1/transactions/history
 ## 📦 Bağımlılıklar
 
 | Paket                      | Açıklama                   |
-| -------------------------- | -------------------------- |
+| ___________________________| ___________________________ |
 | `github.com/go-chi/chi/v5` | HTTP router                |
 | `gorm.io/gorm`             | ORM aracı                  |
 | `github.com/lib/pq`        | PostgreSQL sürücüsü        |
@@ -120,7 +121,7 @@ GET  /api/v1/transactions/history
 
 ## 👤 Geliştirici
 
-**Damla Arpa**  
+**Damla Arpa**
 📧 damlarpa@gmail.com
 🔗 [[github.com/Severustark](https://github.com/Severustark)](https://github.com/Severustark)
 🔗https://www.linkedin.com/in/damla-arpa/
@@ -129,7 +130,7 @@ GET  /api/v1/transactions/history
 ## 📦 Bağımlılıklar
 
 | Paket                      | Açıklama                   |
-| -------------------------- | -------------------------- |
+|___________________________ | ___________________________ |
 | `github.com/go-chi/chi/v5` | HTTP router                |
 | `gorm.io/gorm`             | ORM aracı                  |
 | `github.com/lib/pq`        | PostgreSQL sürücüsü        |
@@ -139,9 +140,10 @@ GET  /api/v1/transactions/history
 
 ## 👤 Geliştirici
 
-**Damla Arpa**  
+**Damla Arpa**
 📧 damlarpa@gmail.com
 🔗 [[github.com/Severustark](https://github.com/Severustark)](https://github.com/Severustark)
 🔗https://www.linkedin.com/in/damla-arpa/
 
 ---
+```
