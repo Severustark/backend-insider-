@@ -106,7 +106,25 @@ GET  /api/v1/transactions/user/{id}
 GET  /api/v1/transactions/history
 
 ---
+## 📦 Bağımlılıklar
 
+| Paket                      | Açıklama                   |
+| -------------------------- | -------------------------- |
+| `github.com/go-chi/chi/v5` | HTTP router                |
+| `gorm.io/gorm`             | ORM aracı                  |
+| `github.com/lib/pq`        | PostgreSQL sürücüsü        |
+| `github.com/joho/godotenv` | .env dosyası okuyucu       |
+| `github.com/rs/zerolog`    | JSON tabanlı loglama aracı |
+
+
+## 👤 Geliştirici
+
+**Damla Arpa**  
+📧 damlarpa@gmail.com
+🔗 [[github.com/Severustark](https://github.com/Severustark)](https://github.com/Severustark)
+🔗https://www.linkedin.com/in/damla-arpa/
+
+---
 ## 📦 Bağımlılıklar
 
 | Paket                      | Açıklama                   |
