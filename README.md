@@ -71,3 +71,77 @@ POST /api/v1/auth/login
   "email": "user@example.com",
   "password": "123456"
 }
+
+```
+
+### 👤 Kullanıcı
+
+```http
+GET /api/v1/users/me
+Authorization: Bearer <access_token>
+
+PUT /api/v1/users/me
+{
+  "username": "yeni-isim",
+  "email": "yeni@example.com"
+}
+```
+### 🏦 Bakiye & İşlem
+
+```http
+GET /api/v1/balances/{id}
+
+POST /api/v1/balances/deposit
+{
+  "user_id": 1,
+  "amount": 100.0
+}
+
+GET  /api/v1/balances/{id}
+POST /api/v1/balances/deposit
+POST /api/v1/transactions/debit
+POST /api/v1/transactions
+GET  /api/v1/transactions
+GET  /api/v1/transactions/{id}
+GET  /api/v1/transactions/user/{id}
+GET  /api/v1/transactions/history
+
+---
+## 📦 Bağımlılıklar
+
+| Paket                      | Açıklama                   |
+| -------------------------- | -------------------------- |
+| `github.com/go-chi/chi/v5` | HTTP router                |
+| `gorm.io/gorm`             | ORM aracı                  |
+| `github.com/lib/pq`        | PostgreSQL sürücüsü        |
+| `github.com/joho/godotenv` | .env dosyası okuyucu       |
+| `github.com/rs/zerolog`    | JSON tabanlı loglama aracı |
+
+
+## 👤 Geliştirici
+
+**Damla Arpa**  
+📧 damlarpa@gmail.com
+🔗 [[github.com/Severustark](https://github.com/Severustark)](https://github.com/Severustark)
+🔗https://www.linkedin.com/in/damla-arpa/
+
+---
+## 📦 Bağımlılıklar
+
+| Paket                      | Açıklama                   |
+| -------------------------- | -------------------------- |
+| `github.com/go-chi/chi/v5` | HTTP router                |
+| `gorm.io/gorm`             | ORM aracı                  |
+| `github.com/lib/pq`        | PostgreSQL sürücüsü        |
+| `github.com/joho/godotenv` | .env dosyası okuyucu       |
+| `github.com/rs/zerolog`    | JSON tabanlı loglama aracı |
+
+
+## 👤 Geliştirici
+
+**Damla Arpa**  
+📧 damlarpa@gmail.com
+🔗 [[github.com/Severustark](https://github.com/Severustark)](https://github.com/Severustark)
+🔗https://www.linkedin.com/in/damla-arpa/
+
+---
