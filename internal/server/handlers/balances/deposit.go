@@ -42,7 +42,6 @@ func DepositHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Balance yoksa oluştur, varsa güncelle
 	var balance models.Balance
 	if err := tx.Where("user_id = ?", userID).FirstOrCreate(&balance, models.Balance{
 		UserID:        uint(userID),
@@ -63,7 +62,6 @@ func DepositHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Transaction kaydı
 	if err := tx.Exec(`
 		INSERT INTO transactions (to_user_id, amount, type, status, description, created_at)
 		VALUES (?, ?, ?, ?, ?, ?)`,

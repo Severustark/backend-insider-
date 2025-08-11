@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	// .env dosyasını yükle
+
 	if err := godotenv.Load(); err != nil {
 		log.Println(".env dosyası yüklenemedi, varsayılan değerler kullanılacak")
 	}
@@ -55,7 +55,6 @@ func main() {
 	// HTTP router'ı al
 	r := routes.PublicRoutes()
 
-	// HTTP sunucusunu başlat
 	log.Println("HTTP sunucusu http://localhost:8080 üzerinde çalışıyor...")
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatal("Sunucu başlatılamadı: ", err)

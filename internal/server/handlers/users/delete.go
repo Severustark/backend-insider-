@@ -23,14 +23,12 @@ func DeleteUserHandler(w http.ResponseWriter, r *http.Request) {
 
 	log.Printf(" Kullanıcı siliniyor: ID = %d\n", id)
 
-	//  Önce ilişkili balances verisini sil
 	if err := db.DB.Where("user_id = ?", id).Delete(&models.Balance{}).Error; err != nil {
 		log.Printf(" Balance silme hatası: %v\n", err)
 		http.Error(w, "İlişkili bakiyeler silinemedi", http.StatusInternalServerError)
 		return
 	}
 
-	// Sonra kullanıcıyı sil
 	result := db.DB.Delete(&models.User{}, id)
 	if result.Error != nil {
 		log.Printf(" Kullanıcı silme hatası: %v\n", result.Error)

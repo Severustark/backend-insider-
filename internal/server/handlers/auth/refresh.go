@@ -47,7 +47,6 @@ func RefreshTokenHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	userID := int64(userIDFloat)
 
-	// Yeni access token üret
 	newAccessToken, err := utils.GenerateToken(userID, role)
 	if err != nil {
 		http.Error(w, "Token üretilemedi", http.StatusInternalServerError)

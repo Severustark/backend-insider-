@@ -16,7 +16,7 @@ const (
 	RoleKey   contextKey = "role"
 )
 
-var jwtSecret = []byte("your-secret-key") // .env'den okuman önerilir
+var jwtSecret = []byte("your-secret-key")
 
 func AuthMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

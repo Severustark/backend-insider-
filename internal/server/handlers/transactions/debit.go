@@ -18,7 +18,6 @@ type DebitRequest struct {
 func DebitTransactionHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(" DebitTransactionHandler tetiklendi")
 
-	// Kullanıcı ID'sini context'ten al
 	userIDRaw := r.Context().Value(middleware.UserIDKey)
 	userID, ok := userIDRaw.(int)
 	if !ok || userID == 0 {
@@ -26,7 +25,6 @@ func DebitTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// İstek verisini çöz
 	var req DebitRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		http.Error(w, "Geçersiz istek formatı", http.StatusBadRequest)
@@ -38,14 +36,12 @@ func DebitTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//  Transaction başlat
 	tx := db.DB.Begin()
 	if tx.Error != nil {
 		http.Error(w, "Veritabanı işlemi başlatılamadı", http.StatusInternalServerError)
 		return
 	}
 
-	//  Bakiye kontrolü
 	var balance float64
 	err := tx.Raw(`SELECT amount FROM balances WHERE user_id = ? FOR UPDATE`, userID).Scan(&balance).Error
 	if err != nil {
@@ -68,7 +64,6 @@ func DebitTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//  İşlem kaydı oluştur
 	if err := tx.Exec(`
 		INSERT INTO transactions (from_user_id, to_user_id, amount, type, status, description, created_at)
 		VALUES (?, NULL, ?, ?, ?, ?, ?)`,
@@ -84,7 +79,6 @@ func DebitTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//  Başarılı yanıt
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(`{"message": "Bakiyeden düşme işlemi başarıyla tamamlandı"}`))
 }

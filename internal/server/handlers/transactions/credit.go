@@ -36,7 +36,6 @@ func CreditTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//  Kullanıcıya ait bakiye var mı?
 	var count int64
 	err := tx.Table("balances").Where("user_id = ?", req.ToUserID).Count(&count).Error
 	if err != nil {
@@ -46,7 +45,7 @@ func CreditTransactionHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if count == 0 {
-		// Yeni bakiye oluştur
+
 		if err := tx.Exec(`
 			INSERT INTO balances (user_id, amount, last_updated_at) VALUES (?, ?, ?)
 		`, req.ToUserID, req.Amount, time.Now()).Error; err != nil {
@@ -55,7 +54,7 @@ func CreditTransactionHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	} else {
-		// Var olan bakiyeye ekle
+
 		if err := tx.Exec(`
 			UPDATE balances SET amount = amount + ?, last_updated_at = ? WHERE user_id = ?
 		`, req.Amount, time.Now(), req.ToUserID).Error; err != nil {
@@ -65,7 +64,6 @@ func CreditTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	//  İşlemi transaction tablosuna yaz
 	if err := tx.Exec(`
 	INSERT INTO transactions (from_user_id, to_user_id, amount, type, status, description, created_at)
 	VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -76,7 +74,6 @@ func CreditTransactionHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//  Commit
 	if err := tx.Commit().Error; err != nil {
 		http.Error(w, "Transaction commit edilemedi", http.StatusInternalServerError)
 		return

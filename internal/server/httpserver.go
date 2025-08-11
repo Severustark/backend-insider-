@@ -32,7 +32,6 @@ func StartHTTPServer(addr string) {
 		routes.ProtectedRoutes(r)
 	})
 
-	// Örnek endpoint
 	r.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("pong"))
 	})

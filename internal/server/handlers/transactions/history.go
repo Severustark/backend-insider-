@@ -21,7 +21,6 @@ func TransactionHistoryHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Tarih aralığı parse et
 	startStr := r.URL.Query().Get("start")
 	endStr := r.URL.Query().Get("end")
 

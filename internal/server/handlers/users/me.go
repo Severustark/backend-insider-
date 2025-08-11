@@ -13,7 +13,6 @@ import (
 func GetMeHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println(" GetMeHandler tetiklendi")
 
-	// Context’ten kullanıcı ID’sini al
 	userIDRaw := r.Context().Value(middleware.UserIDKey)
 	userID, ok := userIDRaw.(int)
 	if !ok || userID == 0 {
@@ -27,7 +26,6 @@ func GetMeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Hassas bilgileri döndürmüyoruz (örn. şifre)
 	type response struct {
 		ID       uint   `json:"id"`
 		Username string `json:"username"`

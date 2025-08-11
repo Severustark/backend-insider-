@@ -50,7 +50,6 @@ func GenerateRefreshToken(userID int64, role string) (string, error) {
 	return token.SignedString(GetJWTSecret())
 }
 
-// Token çözümleme
 func ParseToken(tokenString string) (*Claims, error) {
 	token, err := jwt.ParseWithClaims(tokenString, &Claims{}, func(token *jwt.Token) (interface{}, error) {
 		return GetJWTSecret(), nil

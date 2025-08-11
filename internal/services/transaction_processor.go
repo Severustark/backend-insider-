@@ -59,7 +59,7 @@ func (tp *TransactionProcessor) worker(id int) {
 		} else {
 			log.Printf("Transaction ID %d processed successfully", tx.ID)
 		}
-		time.Sleep(500 * time.Millisecond) // işlem takibi için kısa bir bekleme
+		time.Sleep(500 * time.Millisecond)
 	}
 
 	log.Printf("Worker %d stopped", id)

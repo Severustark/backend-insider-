@@ -26,14 +26,12 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Parola hashleme
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
 		http.Error(w, "Parola hashlenemedi", http.StatusInternalServerError)
 		return
 	}
 
-	// Yeni kullanıcı oluşturma
 	user := models.User{
 		Username:     req.Username,
 		Email:        req.Email,
@@ -43,7 +41,7 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := db.DB.Create(&user).Error; err != nil {
-		log.Println("Kullanıcı kaydedilemedi:", err) //  Hata detayı loga yazılır
+		log.Println("Kullanıcı kaydedilemedi:", err)
 
 		if strings.Contains(err.Error(), "duplicate key") {
 			http.Error(w, "Bu e-posta zaten kayıtlı", http.StatusConflict)
@@ -53,7 +51,6 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Başarı mesajı
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(map[string]string{
 		"message": "Kullanıcı başarıyla kaydedildi",
